@@ -1,6 +1,7 @@
 import pandas as pd
 from datetime import datetime 
 
+
 machines = pd.read_csv('machine_power.csv')
 
 # transformar as horas em um int 
