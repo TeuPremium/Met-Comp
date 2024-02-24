@@ -1,17 +1,20 @@
 # Lista de Prioridades
 '''
 Indice:
-push -> adiciona item à lista
-pop -> remove item da lista
-is_empty -> verifica se lista é vazia
-print_queue -> imprime lista em ordem
-get_queue -> retorna lista com prioridade
+push -> adiciona item à fila
+pop -> remove item da fila
+is_empty -> verifica se fila é vazia
+print_queue -> imprime fila em ordem
+get_queue -> retorna fila com prioridade
+add_list -> adiciona os itens de dentro de uma lista à fila com prioridade
 '''
 class PriorityQueue:
     def __init__(self):
         self._queue = []
 
     def push(self, item, priority):
+        if not isinstance(priority, (int, float)):
+            raise ValueError("Priority must be a numeric value")
         self._queue.append((item, priority))
         self._queue.sort(key=lambda x: x[1])
 
@@ -36,7 +39,11 @@ class PriorityQueue:
         for item, priority in self._queue:
             organized_queue.append([item, priority])
         return(organized_queue)
-
-
-
+    
+    def add_list(self, item_list, priorities):
+        if len(item_list) != len(priorities):
+            raise ValueError('Length of priorities list must match the length of item list')
+            
+        for doc, priority in zip(item_list, priorities):
+            self.push(doc, priority)
         
