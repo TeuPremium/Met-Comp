@@ -22,7 +22,7 @@ machines = [list(row) for row in machines_values]
 
 '''
 ============================================= IDEIA PRO PROJETO ===============================================
-a ideia que eu acho mais facil de lidar com nosso programa seria de depois que ler a lista original
+a ideia que eu acho mais facil para lidar com nosso programa seria de depois que ler a lista original
 lidar só com listas do python, ao invés de salvar as coisas em um novo csv.
 A gente implementa alguma lógica para ir atualizando os itens corretamente.
 Os itens devem ter um critério baseado em suas caracteristicas para receberem uma nova prioridade
