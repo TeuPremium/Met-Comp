@@ -13,4 +13,8 @@ def time_to_hour(time_str):
 machines['inicio_uso_tipico'] = machines['inicio_uso_tipico'].apply(time_to_hour)
 machines['fim_uso_tipico'] = machines['fim_uso_tipico'].apply(time_to_hour)
 
+priorities = machines['prioridade']
+print(priorities)
+machines = machines.drop(['prioridade'], axis=1)
+
 print(machines)
