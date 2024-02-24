@@ -1,5 +1,5 @@
 local,prioridade ,Kwh,em_uso,fixo,inicio_uso_tipico,fim_uso_tipico
-sala1,1,103,1,,12:00,18:00
+sala1,1,103,1,,11:30,18:30
 sala2,2,100,1,,12:00,18:00
 sala3,1,99,0,,12:00,18:00
 sala4,1,100,0,,12:00,18:00
