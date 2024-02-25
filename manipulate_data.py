@@ -6,7 +6,7 @@ machines = pd.read_csv('machine_power.csv')
 
 # transformar as horas em um int 
 def time_to_hour(time_str):
-    hour = int(''.join(map(str, map(int, time_str.replace(':', '')))))
+    hour = int(''.join(filter(str.isdigit, time_str)))   #Aplicando o a função filter. Retornará uma lista com apenas str de digitos e depois serão unidos pelo join
     return hour
 
 # aplicar a transformação de datas em valores
@@ -18,7 +18,7 @@ priorities = machines['prioridade']
 
 # tratar itens para ficarem em formato correto para lista
 machines_values = machines.values
-machines = [list(row) for row in machines_values]
+machines = [list(row) for row in machines_values]        
 
 '''
 ============================================= IDEIA PRO PROJETO ===============================================
