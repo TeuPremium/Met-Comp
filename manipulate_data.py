@@ -1,5 +1,4 @@
 import pandas as pd
-from datetime import datetime 
 from priority_queue import PriorityQueue
 
 machines = pd.read_csv('machine_power.csv')
