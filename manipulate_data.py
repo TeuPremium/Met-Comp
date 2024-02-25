@@ -29,12 +29,18 @@ Podemos usar o horário atual e funções assincronas que contam o tempo para at
 Pra fazer isso, temos que atualizar a lista baseado no id de cada item, para não desligar o que não devemos.
 
 ===============================================================================================================
+
+                    SAÍDA DO PROGRAMA: LISTA DE APARELHOS [NOME DO APAREHO, LIGADO/DESLIGADO]
+                    ex:
+                    [[sala1, ligado],[sala2, ligado],[sala3, desligado],[sala4, ligado],[sala5, desligado]]
 '''
 
 # Alimentar itens para a lista (pode ser feita uma classe ou função para isso)
 organizer = PriorityQueue()
 
 organizer.add_list(machines, priorities)
+
+# print(organizer.get_queue())
 
 organizer.print_queue()
 
