@@ -14,13 +14,13 @@ class PriorityQueue:
 
     def push(self, item, priority):
         if not isinstance(priority, (int, float)):
-            raise ValueError("Priority must be a numeric value")
+            raise ValueError("Prioridade precisa ser um valor numérico!")
         self._queue.append((item, priority))
         self._queue.sort(key=lambda x: x[1])
 
     def pop(self):
         if self.is_empty():
-            raise IndexError("pop from empty list")
+            raise IndexError("Tentativa de retirar elemento de uma lista vazia!")
         return self._queue.pop(0)[0]
 
     def is_empty(self):
@@ -28,11 +28,11 @@ class PriorityQueue:
     
     def print_queue(self):
         if self.is_empty():
-            print("Queue is empty")
+            print("Fila vazia!")
         else:
-            print("Priority Queue:")
+            print("Prioridade da Fila:")
             for item, priority in self._queue:
-                print(f"Item: {item}, Priority: {priority}")
+                print(f"Item: {item}, Prioridade: {priority}")
 
     def get_queue(self):
         organized_queue = []
@@ -42,7 +42,7 @@ class PriorityQueue:
     
     def add_list(self, item_list, priorities):
         if len(item_list) != len(priorities):
-            raise ValueError('Length of priorities list must match the length of item list')
+            raise ValueError('O tamanho da lista de prioridades deve corresponder ao tamanho da lista de itens')
             
         for doc, priority in zip(item_list, priorities):
             self.push(doc, priority)
