@@ -10,7 +10,8 @@
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" 
         crossorigin="anonymous">
     <!-- CSS Local -->
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+    <script type="text/javascript" src="{{ url_for('static', filename='javascript/buttons.js') }}"></script>
 
     <title>ChatDeuPT</title>
 
@@ -18,26 +19,43 @@
     <body>
         <header style="text-align: center;"><h1>Click Switch</h1></header>
 
-        <div id="Tabela">
-            <table class="table table-striped">
-                <thead class="thead-dark">
-                    <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Ambiente</th>
-                    <th scope="col">Estado</th>
-                    </tr>
-                </thead>
-                <tbody>
-                {% for key, value in on_off.items() %}
-                    <tr>
-                    <th scope="row">{{ loop.index }}</th>
-                    <td>{{ key }}</td>
-                    <td>{% if value == 1 %} Ligado {% else %} Desligado {% endif %}</td>
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
+        <div class="card mx-auto my-5" style="width: 24rem;">
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">
+                Empresa Click Switch Soluções Inteligentes. Veja quais salas estão sendo utilizados no momento.
+              </p>
+              <form method="post" action="{{ url_for('main_page') }}">
+                <button type="submit" name="show-table" value="firma01" class="btn btn-primary">Firma 01</button>
+                <button type="submit" name="show-table" value="firma01" class="btn btn-primary">Firma 02</button>
+              </form>
+            
+                {% if show_table %}
+                <div id="Tabela">
+                    <table class="table table-striped">
+                        <thead class="thead-dark">
+                            <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Ambiente</th>
+                            <th scope="col">Estado</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {% for key, value in on_off.items() %}
+                            <tr>
+                            <th scope="row">{{ loop.index }}</th>
+                            <td>{{ key }}</td>
+                            <td>{% if value == 1 %} Ligado {% else %} Desligado {% endif %}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% endif %}
+            </div>
         </div>
+
+        
 
 
     <!-- JavaScript Opcional-->
