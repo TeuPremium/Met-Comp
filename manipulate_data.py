@@ -43,6 +43,7 @@ organizer.add_list(machines, priorities)
 # print(organizer.get_queue())
 
 organizer.print_queue()
+print("testando")
 
 
 
