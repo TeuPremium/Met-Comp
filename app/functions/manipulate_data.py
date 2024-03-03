@@ -1,19 +1,49 @@
 import os
 import json
 import pandas as pd
-from datetime import datetime 
+from datetime import datetime, time 
 from app.functions.priority_queue import PriorityQueue
 #rom priority_queue import PriorityQueue
 
 # transformar as horas em um int 
-def time_to_hour(time_str):
-    hour = int(''.join(filter(str.isdigit, time_str)))   #Aplicando o a função filter. Retornará uma lista com apenas str de digitos e depois serão unidos pelo join
+def time_to_hour(dt_time):
+    hour = dt_time.strftime('%H:%M')   #Aplicando ao formato de apenas Hora e minutos
     return hour
+
+def priority_check(filename):
+    """Função responsável por fazer as devidas alterações de prioridade de acordo com o tempo atual"""
+
+    #Pegando um valor específico
+    """
+    now = time(15, 30, 0)                                 # hora, minutos, segundos.
+    agora = now.replace(second=0, microsecond=0)          #Valor de teste de um horário específico.
+    """
+
+    #Pegando valor atual do horário
+    now = datetime.now()
+    agora = now.replace(second=0, microsecond=0).time()    #Valor de teste do horário atual
+
+    #Leitura do arquivo do ambiente e tornando em formato pandas
+    data = pd.read_csv(filename)
+
+    #Tornando as colunas de tempo em formato de datetime
+    data['inicio_uso_tipico'] = pd.to_datetime(data['inicio_uso_tipico'], format='%H:%M').dt.time
+    data['fim_uso_tipico'] = pd.to_datetime(data['fim_uso_tipico'], format='%H:%M').dt.time
+
+    #Loop para verificar os horários típicos e alterar sua prioridade
+    for i, linha in data.iterrows():
+
+        if not (linha['inicio_uso_tipico'] <= agora <= linha['fim_uso_tipico']): #Verificação se a sala está dentro do horário típico de funcionamento.
+            if linha['prioridade'] < 4 and linha['fixo'] == 0:                   #Verifica o nível atual da prioridade e se a sala tem prioridade fixa
+                data.at[i, 'prioridade'] += 1                                    #Alterando diretamente o valor da prioridade na linha e coluna especificada
+                #print(f"Prioridade da sala {linha['local']} modificada!")        #Print ilustrativo de qual sala teve prioridade modificada
+    
+    return data
 
 def data_processing(filename):
 
     #print(os.path.join(os.getcwd(), 'machine_power.csv')) Usados por fins de debug caso o arquivo esteja no diretório errado
-    machines = pd.read_csv(filename)
+    machines = priority_check(filename)
 
     # aplicar a transformação de datas em valores
     machines['inicio_uso_tipico'] = machines['inicio_uso_tipico'].apply(time_to_hour)
