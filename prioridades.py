@@ -1,25 +1,28 @@
 from datetime import datetime
 import pandas as pd
 
-agora = datetime(2024, 3, 2, 20, 30)
-hora, minutos = agora.hour, agora.minute
+#Pegando um valor específico
+"""
+now = datetime(2022, 12, 31, 15, 30, 0)               # ano, mês, dia, hora, minutos, segundos.
+agora = now.replace(second=0, microsecond=0).time()   #Valor de teste de um horário específico.
+"""
 
-print(f"{hora}:{minutos}")
+#Pegando valor atual do horário
+now = datetime.now()
+agora = now.replace(second=0, microsecond=0).time()    #Valor de teste do horário atual
 
+#Leitura do arquivo do ambiente e tornando em formato pandas
 data = pd.read_csv("machine_power.csv")
-#print(data)
 
-data['inicio_uso_tipico'] = pd.to_datetime(data['inicio_uso_tipico'])
-data['fim_uso_tipico'] = pd.to_datetime(data['fim_uso_tipico'])
+#Tornando as colunas de tempo em formato de datetime
+data['inicio_uso_tipico'] = pd.to_datetime(data['inicio_uso_tipico'], format='%H:%M').dt.time
+data['fim_uso_tipico'] = pd.to_datetime(data['fim_uso_tipico'], format='%H:%M').dt.time
 
-data_time  = data.loc[:, ['inicio_uso_tipico', 'fim_uso_tipico']]
-print(data_time)
+#Loop para verificar os horários típicos e alterar sua prioridade
+for i, linha in data.iterrows():
 
-for i , linha in data.iterrows():
-    if linha['inicio_uso_tipico'] <= agora and linha['fim_uso_tipico']<=agora:
-        if linha['prioridade'] < 5 :
-            data.at[i, 'prioridade'] += 1
-        print(f"Para a linha {i + 1}: fora")
-    else:
-        print(f"Para a linha {i + 1}: dentro")
-print(data['prioridade'])
+    if not (linha['inicio_uso_tipico'] <= agora <= linha['fim_uso_tipico']): #Verificação se a sala está dentro do horário típico de funcionamento.
+        if linha['prioridade'] < 4 and linha['fixo'] == 0:                   #Verifica o nível atual da prioridade e se a sala tem prioridade fixa
+            data.at[i, 'prioridade'] += 1                                    #Alterando diretamente o valor da prioridade na linha e coluna especificada
+            print(f"Prioridade da sala {linha['local']} modificada!")        #Print ilustrativo de qual sala teve prioridade modificada
+ 
