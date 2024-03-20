@@ -1,6 +1,8 @@
 import os
 import json
 import pandas as pd
+
+from random import randint
 from datetime import datetime, time 
 from app.functions.priority_queue import PriorityQueue
 #rom priority_queue import PriorityQueue
@@ -9,6 +11,17 @@ from app.functions.priority_queue import PriorityQueue
 def time_to_hour(dt_time):
     hour = dt_time.strftime('%H:%M')   #Aplicando ao formato de apenas Hora e minutos
     return hour
+
+
+def random_in_use(filename):
+    """Função responsável por deixar o estado de uso da sala de forma aleatória"""
+    data = pd.read_csv(filename)
+
+    for i, linha in data.iterrows():
+        if linha['fixo'] == 0:                   #Verifico se é alguma sala sem ter uso fixo
+            data.at[i, 'em_uso'] = randint(0, 1) #Alterando entre 0 ou 1 para o em uso
+
+    return data 
 
 def priority_check(filename):
     """Função responsável por fazer as devidas alterações de prioridade de acordo com o tempo atual"""
@@ -23,8 +36,8 @@ def priority_check(filename):
     now = datetime.now()
     agora = now.replace(second=0, microsecond=0).time()    #Valor de teste do horário atual
 
-    #Leitura do arquivo do ambiente e tornando em formato pandas
-    data = pd.read_csv(filename)
+    #Leitura do arquivo do ambiente e tornando em formato pandas e trocando o coluna 'em_uso' de forma aleatória
+    data = random_in_use(filename)
 
     #Tornando as colunas de tempo em formato de datetime
     data['inicio_uso_tipico'] = pd.to_datetime(data['inicio_uso_tipico'], format='%H:%M').dt.time
@@ -36,8 +49,11 @@ def priority_check(filename):
         if not (linha['inicio_uso_tipico'] <= agora <= linha['fim_uso_tipico']): #Verificação se a sala está dentro do horário típico de funcionamento.
             if linha['prioridade'] < 4 and linha['fixo'] == 0:                   #Verifica o nível atual da prioridade e se a sala tem prioridade fixa
                 data.at[i, 'prioridade'] += 1                                    #Alterando diretamente o valor da prioridade na linha e coluna especificada
-                #print(f"Prioridade da sala {linha['local']} modificada!")        #Print ilustrativo de qual sala teve prioridade modificada
-    
+                #print(f"Prioridade da sala {linha['local']} modificada!")       #Print ilustrativo de qual sala teve prioridade modificada
+        if linha['em_uso'] == 0:                                                 #Checando se não está em uso
+            if linha['prioridade'] < 4:                                          #Verifica o nível atual da prioridade 
+                data.at[i, 'prioridade'] += 1                                    #Alterando diretamente o valor da prioridade na linha e coluna especificada
+        
     return data
 
 def data_processing(filename):
@@ -74,8 +90,8 @@ def data_processing(filename):
     organizer.add_list(machines, priorities)
 
     #organizer.print_queue()
-    dict_style = organizer.on_off_state()
-    return dict_style
+    list_style = organizer.on_off_state()
+    return list_style
 
 if __name__ == '__main__':
     print(data_processing('machine_power.csv'))
