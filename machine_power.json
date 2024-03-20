@@ -1,0 +1,22 @@
+[
+    {"local": "sala1", "prioridade": 1, "Kwh": 103, "em_uso": 1, "fixo": 0, "inicio_uso_tipico": "11:30", "fim_uso_tipico": "18:30", "id": "#1"},
+    {"local": "sala2", "prioridade": 2, "Kwh": 100, "em_uso": 1, "fixo": 0, "inicio_uso_tipico": "12:00", "fim_uso_tipico": "18:00", "id": "#2"},
+    {"local": "sala3", "prioridade": 1, "Kwh": 99, "em_uso": 0, "fixo": 0, "inicio_uso_tipico": "12:00", "fim_uso_tipico": "18:00", "id": "#3"},
+    {"local": "sala4", "prioridade": 1, "Kwh": 100, "em_uso": 0, "fixo": 0, "inicio_uso_tipico": "12:00", "fim_uso_tipico": "18:00", "id": "#4"},
+    {"local": "sala5", "prioridade": 1, "Kwh": 110, "em_uso": 1, "fixo": 0, "inicio_uso_tipico": "12:00", "fim_uso_tipico": "18:00", "id": "#5"},
+    {"local": "sala6", "prioridade": 1, "Kwh": 100, "em_uso": 0, "fixo": 0, "inicio_uso_tipico": "12:00", "fim_uso_tipico": "18:00", "id": "#6"},
+    {"local": "sala7", "prioridade": 3, "Kwh": 102, "em_uso": 1, "fixo": 0, "inicio_uso_tipico": "12:00", "fim_uso_tipico": "18:00", "id": "#7"},
+    {"local": "sala8", "prioridade": 3, "Kwh": 98, "em_uso": 0, "fixo": 0, "inicio_uso_tipico": "12:00", "fim_uso_tipico": "18:00", "id": "#8"},
+    {"local": "sala9", "prioridade": 1, "Kwh": 101, "em_uso": 1, "fixo": 0, "inicio_uso_tipico": "12:00", "fim_uso_tipico": "18:00", "id": "#9"},
+    {"local": "sala10", "prioridade": 2, "Kwh": 102, "em_uso": 1, "fixo": 0, "inicio_uso_tipico": "12:00", "fim_uso_tipico": "18:00", "id": "#10"},
+    {"local": "copa", "prioridade": 3, "Kwh": 100, "em_uso": 1, "fixo": 0, "inicio_uso_tipico": "12:00", "fim_uso_tipico": "18:00", "id": "#11"},
+    {"local": "máquinas 1", "prioridade": 1, "Kwh": 200, "em_uso": 0, "fixo": 0, "inicio_uso_tipico": "00:00", "fim_uso_tipico": "23:59", "id": "#12"},
+    {"local": "máquinas 2", "prioridade": 1, "Kwh": 200, "em_uso": 1, "fixo": 0, "inicio_uso_tipico": "00:00", "fim_uso_tipico": "23:50", "id": "#13"},
+    {"local": "máquinas 3", "prioridade": 1, "Kwh": 200, "em_uso": 0, "fixo": 0, "inicio_uso_tipico": "00:00", "fim_uso_tipico": "23:59", "id": "#14"},
+    {"local": "recepcao", "prioridade": 4, "Kwh": 10, "em_uso": 0, "fixo": 0, "inicio_uso_tipico": "06:00", "fim_uso_tipico": "22:00", "id": "#15"},
+    {"local": "zelador", "prioridade": 4, "Kwh": 75, "em_uso": 0, "fixo": 0, "inicio_uso_tipico": "16:00", "fim_uso_tipico": "22:00", "id": "#16"},
+    {"local": "luzes", "prioridade": 1, "Kwh": "2,4", "em_uso": 0, "fixo": 0, "inicio_uso_tipico": "00:00", "fim_uso_tipico": "23:59", "id": "#17"},
+    {"local": "server", "prioridade": 1, "Kwh": 850, "em_uso": 0, "fixo": 1, "inicio_uso_tipico": "00:00", "fim_uso_tipico": "23:59", "id": "#18"},
+    {"local": "elevador", "prioridade": 3, "Kwh": 600, "em_uso": 1, "fixo": 1, "inicio_uso_tipico": "00:00", "fim_uso_tipico": "23:59", "id": "#19"},
+    {"local": "elevador 2", "prioridade": 3, "Kwh": 800, "em_uso": 0, "fixo": 0, "inicio_uso_tipico": "00:00", "fim_uso_tipico": "23:59", "id": "#20"}
+]

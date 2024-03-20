@@ -34,6 +34,11 @@ class PriorityQueue:
             for item, priority in self._queue:
                 print(f"Item: {item}, Prioridade: {priority}")
 
+    def on_off_state(self):
+        """Criando um lista de dicionários informando a sala e se está ligado/desligado"""
+        on_off = {sala[0]: sala[3] for sala, _ in self._queue}  
+        return on_off
+
     def get_queue(self):
         organized_queue = []
         for item, priority in self._queue:
