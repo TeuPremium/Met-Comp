@@ -19,21 +19,6 @@ priorities = machines['prioridade']
 machines_values = machines.values
 machines = [list(row) for row in machines_values]        
 
-'''
-============================================= IDEIA PRO PROJETO ===============================================
-a ideia que eu acho mais facil para lidar com nosso programa seria de depois que ler a lista original
-lidar só com listas do python, ao invés de salvar as coisas em um novo csv.
-A gente implementa alguma lógica para ir atualizando os itens corretamente.
-Os itens devem ter um critério baseado em suas caracteristicas para receberem uma nova prioridade
-Podemos usar o horário atual e funções assincronas que contam o tempo para atualizar a lista e retornar ela. 
-Pra fazer isso, temos que atualizar a lista baseado no id de cada item, para não desligar o que não devemos.
-
-===============================================================================================================
-
-                    SAÍDA DO PROGRAMA: LISTA DE APARELHOS [NOME DO APAREHO, LIGADO/DESLIGADO]
-                    ex:
-                    [[sala1, ligado],[sala2, ligado],[sala3, desligado],[sala4, ligado],[sala5, desligado]]
-'''
 
 # Alimentar itens para a lista (pode ser feita uma classe ou função para isso)
 organizer = PriorityQueue()
